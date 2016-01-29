@@ -1,0 +1,43 @@
+﻿<div class="data-actions">
+    <button ng-click="CitiesCtrl.isEditMode = !CitiesCtrl.isEditMode" type="button" class="btn btn-primary">{{CitiesCtrl.isEditMode ? 'View':'Edit'}}</button>
+    <button ng-click="CitiesCtrl.citiesService.addCity()" ng-show="CitiesCtrl.isEditMode" type="button" class="btn btn-success">Add City</button>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <caption><b>*** List of cities ***</b></caption>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Post Code</th>
+                    <th>City Name</th>
+                    <th>Country Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="city in CitiesCtrl.cities">
+                    <th scope="row">{{$index}}</th>
+                    <td>
+                        <input ng-show="CitiesCtrl.isEditMode" ng-model="city.posteCode" />
+                        <span ng-hide="CitiesCtrl.isEditMode">{{city.posteCode}}</span>
+                    </td>
+                    <td>
+                        <input ng-show="CitiesCtrl.isEditMode" ng-model="city.name" />
+                        <span ng-hide="CitiesCtrl.isEditMode">{{city.name}}</span>
+                    </td>
+                    <td>
+                        <input ng-show="CitiesCtrl.isEditMode" ng-model="city.country" />
+                        <span ng-hide="CitiesCtrl.isEditMode">{{city.country}}</span>
+                    </td>
+                    <td>
+                        <button ng-click="CitiesCtrl.citiesService.updateCity(city)" ng-show="CitiesCtrl.isEditMode" type="button" class="btn btn-success">Update</button>
+                        <button ng-click="CitiesCtrl.citiesService.deleteCity(city)" ng-show="CitiesCtrl.isEditMode" type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
